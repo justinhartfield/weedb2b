@@ -1,0 +1,31 @@
+{
+  "name": "weedb2b",
+  "version": "1.0.0",
+  "description": "Weed.de B2B Website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justinhartfield/weedb2b.git"
+  },
+  "keywords": [
+    "weed.de",
+    "cannabis",
+    "b2b",
+    "pharmacy",
+    "manufacturer"
+  ],
+  "author": "Weed.de",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/justinhartfield/weedb2b/issues"
+  },
+  "homepage": "https://github.com/justinhartfield/weedb2b#readme",
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}
