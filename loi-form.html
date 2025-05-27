@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weed.de - Letter of Intent Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'weed-green': '#A3F869',
+                        'weed-pink': '#FF99CC',
+                        'weed-brown': '#3D2314',
+                        'weed-cream': '#F5F5E6',
+                    },
+                    fontFamily: {
+                        'sans': ['Helvetica Neue', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-weed-cream">
+    <div class="container mx-auto px-4 py-12">
+        <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-weed-brown mb-4">Letter of Intent</h1>
+                <p class="text-gray-600">Please complete this form to express your interest in partnering with Weed.de</p>
+            </div>
+            
+            <form id="loi-form" class="space-y-6">
+                <div>
+                    <label for="business-name" class="block text-sm font-medium text-gray-700 mb-1">Business Name</label>
+                    <input type="text" id="business-name" name="Business Name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-weed-green" required>
+                </div>
+                
+                <div>
+                    <label for="contact-name" class="block text-sm font-medium text-gray-700 mb-1">Contact Name</label>
+                    <input type="text" id="contact-name" name="Contact Name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-weed-green" required>
+                </div>
+                
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <input type="email" id="email" name="Email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-weed-green" required>
+                </div>
+                
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                    <input type="tel" id="phone" name="Phone" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-weed-green" required>
+                </div>
+                
+                <div>
+                    <label for="business-type" class="block text-sm font-medium text-gray-700 mb-1">Business Type</label>
+                    <select id="business-type" name="Business Type" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-weed-green" required>
+                        <option value="">Select Business Type</option>
+                        <option value="Pharmacy">Pharmacy</option>
+                        <option value="Manufacturer">Manufacturer</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="preferred-tier" class="block text-sm font-medium text-gray-700 mb-1">Preferred Tier</label>
+                    <select id="preferred-tier" name="Preferred Tier" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-weed-green" required>
+                        <option value="">Select Preferred Tier</option>
+                        <option value="Basic">Basic</option>
+                        <option value="Growth">Growth</option>
+                        <option value="Premium">Premium</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="additional-info" class="block text-sm font-medium text-gray-700 mb-1">Additional Information</label>
+                    <textarea id="additional-info" name="Additional Information" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-weed-green"></textarea>
+                </div>
+                
+                <div class="flex items-center">
+                    <input type="checkbox" id="terms" class="h-4 w-4 text-weed-green focus:ring-weed-green border-gray-300 rounded" required>
+                    <label for="terms" class="ml-2 block text-sm text-gray-700">
+                        I agree to the terms and conditions
+                    </label>
+                </div>
+                
+                <div>
+                    <button type="submit" class="w-full bg-weed-brown text-white font-bold py-3 px-6 rounded-lg hover:bg-opacity-90 transition duration-300">
+                        Submit Letter of Intent
+                    </button>
+                </div>
+                
+                <div id="form-status" class="text-center hidden">
+                    <div id="success-message" class="text-green-600 font-medium hidden">
+                        Thank you! Your Letter of Intent has been submitted successfully.
+                    </div>
+                    <div id="error-message" class="text-red-600 font-medium hidden">
+                        There was an error submitting your form. Please try again.
+                    </div>
+                </div>
+            </form>
+            
+            <div class="mt-8 text-center">
+                <a href="/" class="text-weed-brown hover:underline">Back to Home</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('loi-form');
+            const formStatus = document.getElementById('form-status');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+            
+            // Google Apps Script Web App URL
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyT41aacPPbvIatns3wHsPMHXCdmNq7161jflOlcw2dY2A0DaGDLiStVL1n6l_Alwub/exec';
+            
+            form.addEventListener('submit', e => {
+                e.preventDefault();
+                
+                // Show loading state
+                const submitButton = form.querySelector('button[type="submit"]');
+                const originalButtonText = submitButton.textContent;
+                submitButton.textContent = 'Submitting...';
+                submitButton.disabled = true;
+                
+                // Create form data
+                const formData = new FormData(form);
+                const data = {};
+                
+                // Convert FormData to URL params
+                for (const [key, value] of formData.entries()) {
+                    data[key] = value;
+                }
+                
+                // Send data to Google Sheets
+                fetch(scriptURL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams(data).toString()
+                })
+                .then(response => {
+                    // Show success message
+                    formStatus.classList.remove('hidden');
+                    successMessage.classList.remove('hidden');
+                    errorMessage.classList.add('hidden');
+                    
+                    // Reset form
+                    form.reset();
+                    
+                    // Reset button
+                    submitButton.textContent = originalButtonText;
+                    submitButton.disabled = false;
+                    
+                    // Redirect after 3 seconds
+                    setTimeout(() => {
+                        window.location.href = '/';
+                    }, 3000);
+                })
+                .catch(error => {
+                    // Show error message
+                    formStatus.classList.remove('hidden');
+                    errorMessage.classList.remove('hidden');
+                    successMessage.classList.add('hidden');
+                    
+                    // Reset button
+                    submitButton.textContent = originalButtonText;
+                    submitButton.disabled = false;
+                    
+                    console.error('Error!', error.message);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

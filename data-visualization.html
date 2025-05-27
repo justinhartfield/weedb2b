@@ -1,0 +1,65 @@
+# Data Visualization Section
+<div class="container mx-auto px-4 py-16">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-weed-brown mb-4" data-i18n="data_viz_title">Data-Driven Insights</h2>
+            <p class="text-lg text-gray-600" data-i18n="data_viz_subtitle">Leverage real-time analytics to optimize your business decisions</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-bold text-weed-brown mb-4" data-i18n="pharmacy_orders_title">Pharmacy Orders</h3>
+                <div class="chart-container" style="position: relative; height:300px;">
+                    <canvas id="pharmacy-orders-chart"></canvas>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-bold text-weed-brown mb-4" data-i18n="strain_popularity_title">Strain Popularity</h3>
+                <div class="chart-container" style="position: relative; height:300px;">
+                    <canvas id="strain-popularity-chart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-16">
+            <h3 class="text-xl font-bold text-weed-brown mb-4" data-i18n="regional_sales_title">Regional Sales Distribution</h3>
+            <div class="chart-container" style="position: relative; height:300px;">
+                <canvas id="regional-sales-chart"></canvas>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h3 class="text-xl font-bold text-weed-brown mb-4" data-i18n="traffic_prediction_title">Traffic Prediction Calculator</h3>
+            <p class="mb-6" data-i18n="traffic_prediction_desc">Estimate your potential monthly orders based on your business size and location</p>
+            
+            <div class="mb-6">
+                <label class="block text-weed-brown font-bold mb-2" data-i18n="business_size_label">Business Size (1-100):</label>
+                <input type="range" id="traffic-prediction-slider" min="1" max="100" value="50" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                <div class="flex justify-between mt-2">
+                    <span class="text-sm text-gray-600" data-i18n="small">Small</span>
+                    <span class="text-sm font-bold text-weed-brown">
+                        <span id="traffic-prediction-value">50</span>
+                    </span>
+                    <span class="text-sm text-gray-600" data-i18n="large">Large</span>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-weed-cream rounded-lg p-4">
+                    <h4 class="font-bold text-weed-brown mb-2" data-i18n="direct_orders_title">Estimated Monthly Orders</h4>
+                    <div class="text-3xl font-bold text-weed-brown">
+                        <span id="monthly-orders-prediction">150</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-2" data-i18n="direct_orders_desc">Orders placed directly through Weed.de</p>
+                </div>
+                <div class="bg-weed-cream rounded-lg p-4">
+                    <h4 class="font-bold text-weed-brown mb-2" data-i18n="additional_orders_title">Additional Influenced Orders</h4>
+                    <div class="text-3xl font-bold text-weed-brown">
+                        <span id="additional-orders-prediction">250</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-2" data-i18n="additional_orders_desc">Orders from customers who researched on Weed.de before purchasing elsewhere</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
