@@ -296,28 +296,59 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize language switcher
     function initLanguageSwitcher() {
-        const languageOptions = document.querySelectorAll('.language-option');
-        
-        languageOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                const lang = this.getAttribute('data-switch-lang');
-                
-                // Update active state
-                languageOptions.forEach(opt => opt.classList.remove('active'));
-                this.classList.add('active');
-                
-                if (lang === 'en') {
-                    // Reset to English
-                    location.reload();
-                } else if (lang === 'de') {
-                    // Translate to German
-                    prepareTranslation();
-                    translatePage('de');
-                    document.documentElement.lang = 'de';
-                }
-            });
-        });
+    const languageOptions = document.querySelectorAll('.language-option');
+    
+    // Determine initial language from localStorage or default to German
+    let currentLang = localStorage.getItem('lang') || 'de';
+
+    // Apply translation and set HTML lang attribute based on initial language
+    if (currentLang === 'de') {
+        // It's good practice to ensure elements are ready for translation, 
+        // especially if prepareTranslation adds necessary attributes.
+        prepareTranslation(); 
+        translatePage('de');
     }
+    // If currentLang is 'en', the page should naturally be in English (original HTML text)
+    // and no specific JavaScript translation call is needed to show English.
+    document.documentElement.lang = currentLang;
+
+    // Update active class on buttons based on the determined current language
+    languageOptions.forEach(opt => {
+        if (opt.getAttribute('data-switch-lang') === currentLang) {
+            opt.classList.add('active');
+        } else {
+            opt.classList.remove('active');
+        }
+    });
+    
+    // Add click event listeners to language options
+    languageOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            const selectedLang = this.getAttribute('data-switch-lang');
+            
+            // Save selected language to localStorage
+            localStorage.setItem('lang', selectedLang);
+            
+            // Update active state for buttons
+            languageOptions.forEach(opt => opt.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = selectedLang;
+            
+            // Apply translation or reload page
+            if (selectedLang === 'en') {
+                // Reload the page to revert to original English content from HTML.
+                // This matches the previous behavior. A more advanced solution might revert text in-place.
+                location.reload(); 
+            } else if (selectedLang === 'de') {
+                // Ensure elements are ready for translation if not already prepared.
+                prepareTranslation();
+                translatePage('de');
+            }
+        });
+    });
+}
 
     // Initialize
     initLanguageSwitcher();
