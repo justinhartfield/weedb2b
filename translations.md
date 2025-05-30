@@ -58,6 +58,7 @@
 - "Homepage search visibility" = "Sichtbarkeit auf der Homepage-Suche"
 - "B2C newsletter option" = "B2C-Newsletter-Option"
 - "Eligibility for "Top Pharmacy" spot" = "Berechtigung für den "Top-Apotheke"-Platz"
+- "Special Visible Placement on our Top Pharmacy Landing Page" = "Spezielle sichtbare Platzierung auf unserer Top-Apotheken-Landing-Page"
 - "Select Premium" = "Premium auswählen"
 
 ### Order Prediction Slider
